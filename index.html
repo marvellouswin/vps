@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome VPS</title>
+    <script>
+        const currentURL = window.location.href;
+        const urlObject = new URL(currentURL);
+        const domainName = urlObject.hostname;
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const pid = urlParams.get('pid');
+
+        if (domainName==="bwh.awesome-vps.com"){
+            window.location.href = "https://bandwagonhost.com/aff.php?aff=74483&pid="+pid
+        }else if(domainName==="justmysocks.awesome-vps.com"){
+            window.location.href = "https://justmysocks.net/members/aff.php?aff=30602&pid="+pid
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
