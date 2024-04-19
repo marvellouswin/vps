@@ -71,6 +71,7 @@ show_status(){
 
 }
 
+
 install_pkgs() {
   # Install qrencode, jq, and iptables if not already installed
   local pkgs=("qrencode" "jq" "iptables")
@@ -94,12 +95,12 @@ install_pkgs() {
 }
 
 install_shortcut() {
-  cat > /root/sbox/mianyang.sh << EOF
+  cat > /root/sbox/kcswag.sh << EOF
 #!/usr/bin/env bash
-bash <(curl -fsSL https://github.com/vveg26/sing-box-reality-hysteria2/raw/main/install.sh) \$1
+bash <(curl -fsSL https://raw.githubusercontent.com/marvellouswin/vps/main/install.sh) \$1
 EOF
-  chmod +x /root/sbox/mianyang.sh
-  ln -sf /root/sbox/mianyang.sh /usr/bin/mianyang
+  chmod +x /root/sbox/kcswag.sh
+  ln -sf /root/sbox/kcswag.sh /usr/bin/kcswag
 }
 
 reload_singbox() {
@@ -797,8 +798,8 @@ uninstall_singbox() {
     disable_hy2hopping
     systemctl disable --now sing-box > /dev/null 2>&1
     rm -f /etc/systemd/system/sing-box.service
-    rm -f /root/sbox/sbconfig_server.json /root/sbox/sing-box /root/sbox/mianyang.sh
-    rm -f /usr/bin/mianyang /root/sbox/self-cert/private.key /root/sbox/self-cert/cert.pem /root/sbox/config
+    rm -f /root/sbox/sbconfig_server.json /root/sbox/sing-box /root/sbox/kcswag.sh
+    rm -f /usr/bin/kcswag /root/sbox/self-cert/private.key /root/sbox/self-cert/cert.pem /root/sbox/config
     rm -rf /root/sbox/self-cert/ /root/sbox/
     warning "卸载完成"
 }
@@ -1637,7 +1638,7 @@ echo ""
 echo ""
 install_pkgs
 # Check if reality.json, sing-box, and sing-box.service already exist
-if [ -f "/root/sbox/sbconfig_server.json" ] && [ -f "/root/sbox/config" ] && [ -f "/root/sbox/mianyang.sh" ] && [ -f "/usr/bin/mianyang" ] && [ -f "/root/sbox/sing-box" ] && [ -f "/etc/systemd/system/sing-box.service" ]; then
+if [ -f "/root/sbox/sbconfig_server.json" ] && [ -f "/root/sbox/config" ] && [ -f "/root/sbox/kcswag.sh" ] && [ -f "/usr/bin/kcswag" ] && [ -f "/root/sbox/sing-box" ] && [ -f "/etc/systemd/system/sing-box.service" ]; then
     echo ""
     warning "sing-box-reality-hysteria2已安装"
     show_status
@@ -1683,7 +1684,7 @@ if [ -f "/root/sbox/sbconfig_server.json" ] && [ -f "/root/sbox/config" ] && [ -
           ;;
       5)
           enable_bbr
-          mianyang
+          kcswag
           exit 0
           ;;
       6)
@@ -1881,7 +1882,7 @@ if /root/sbox/sing-box check -c /root/sbox/sbconfig_server.json; then
     systemctl restart sing-box
     install_shortcut
     show_client_configuration
-    warning "输入mianyang,即可打开菜单"
+    warning "输入kcswag,即可打开菜单"
 else
     error "配置文件检查失败，启动失败!"
 fi
